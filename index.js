@@ -14,10 +14,17 @@ const createRandomPassword = (length) => {
   password += numbers.charAt(Math.floor(Math.random() * numbers.length));
   password += symbols.charAt(Math.floor(Math.random() * symbols.length));
 
-  for (let i = 4; i <= length; i++) {
-    password += i;
+  let combined = upperCase + lowerCase + numbers + symbols;
+  for (let i = 0; i < length -4; i++) {
+    password += combined.charAt(Math.floor(Math.random() * combined.length));
   }
+
+  passEl.textContent = `Password: ${password}`;
+
+  // for (let i = 4; i <= length; i++) {
+  //   password += i;
+  // }
   console.log(password);
 };
 
-createRandomPassword(12);
+createRandomPassword(6);
