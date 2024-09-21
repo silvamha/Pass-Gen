@@ -1,30 +1,36 @@
 const passEl = document.querySelector("#pass-el");
 
-// Initialize variables of different data types
-
-const createRandomPassword = (length) => {
+const createRandomPassword = (charLength, numLength) => {
   let upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   let lowerCase = "abcdefghijklmnopqrstuvwxyz";
-  let numbers = "0123456789";
   let symbols = "!@#$%^&*()_+[]{}|;:,.<>?";
 
-  let password = "";
-  password += upperCase.charAt(Math.floor(Math.random() * upperCase.length));
-  password += lowerCase.charAt(Math.floor(Math.random() * lowerCase.length));
-  password += numbers.charAt(Math.floor(Math.random() * numbers.length));
-  password += symbols.charAt(Math.floor(Math.random() * symbols.length));
+  let passwordChars = "";
+  let passwordNumbers = "";
 
-  let combined = upperCase + lowerCase + numbers + symbols;
-  for (let i = 0; i < length -4; i++) {
-    password += combined.charAt(Math.floor(Math.random() * combined.length));
+  // Ensure at least one character from each category
+  passwordChars += upperCase.charAt(Math.floor(Math.random() * upperCase.length));
+  passwordChars += lowerCase.charAt(Math.floor(Math.random() * lowerCase.length));
+  passwordChars += symbols.charAt(Math.floor(Math.random() * symbols.length));
+
+  let combinedChars = upperCase + lowerCase + symbols;
+  for (let i = 0; i < charLength - 3; i++) {
+    passwordChars += combinedChars.charAt(Math.floor(Math.random() * combinedChars.length));
   }
+
+  // Generate numbers
+  for (let i = 0; i < numLength; i++) {
+    passwordNumbers += Math.floor(Math.random() * 10);
+  }
+
+  // Combine characters and numbers
+  let password = `${passwordChars}${passwordNumbers}`;
 
   passEl.textContent = `Password: ${password}`;
 
-  // for (let i = 4; i <= length; i++) {
-  //   password += i;
-  // }
   console.log(password);
 };
 
-createRandomPassword(6);
+createRandomPassword(8, 6);
+
+
