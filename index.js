@@ -1,16 +1,23 @@
-const appEl = document.querySelector("#app-el");
 const passEl = document.querySelector("#pass-el");
 
-const genPass = (length) => {
+// Initialize variables of different data types
 
-  const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const lowerCase = "abcdefghijklmnopqrstuvwxyz";
-  const numbers = "0123456789";
-  const specialChars = "!@#$%^&*()_+[]{}|;:,.<>?";
+const createRandomPassword = (length) => {
+  let upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let lowerCase = "abcdefghijklmnopqrstuvwxyz";
+  let numbers = "0123456789";
+  let symbols = "!@#$%^&*()_+[]{}|;:,.<>?";
 
   let password = "";
-  
-  console.log(upperCase.charAt(Math.floor(Math.random() * upperCase.length)));
+  password += upperCase.charAt(Math.floor(Math.random() * upperCase.length));
+  password += lowerCase.charAt(Math.floor(Math.random() * lowerCase.length));
+  password += numbers.charAt(Math.floor(Math.random() * numbers.length));
+  password += symbols.charAt(Math.floor(Math.random() * symbols.length));
+
+  for (let i = 4; i <= length; i++) {
+    password += i;
+  }
+  console.log(password);
 };
 
-// for (let i = 0; i < upperCase.length; i++) {}
+createRandomPassword(12);
